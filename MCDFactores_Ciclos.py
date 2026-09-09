@@ -1,4 +1,4 @@
-"MCD a partir de dos números usando factores a partir de dos números"
+"MCD usando factores y ciclos"
 
 # Pedir los dos números
 num1 = int(input("Ingresa el primer número: "))
@@ -15,29 +15,34 @@ factores_b = []
 divisor = 2
 
 while a > 1:
-    while a % divisor == 0:
+    if a % divisor == 0:
         factores_a.append(divisor)
         a = a // divisor
-    divisor += 1
+    else:
+        divisor += 1
 
 # Obtener factores del segundo número
 divisor = 2
 
 while b > 1:
-    while b % divisor == 0:
+    if b % divisor == 0:
         factores_b.append(divisor)
         b = b // divisor
-    divisor += 1
+    else:
+        divisor += 1
+
+# Copia para buscar factores comunes
+factores_b_aux = factores_b.copy()
 
 # Buscar factores comunes
 factores_comunes = []
 
 for factor in factores_a:
-    if factor in factores_b:
+    if factor in factores_b_aux:
         factores_comunes.append(factor)
-        factores_b.remove(factor)
+        factores_b_aux.remove(factor)
 
-# Calcular el MCD multiplicando los factores comunes
+# Calcular el MCD
 mcd = 1
 
 for factor in factores_comunes:
